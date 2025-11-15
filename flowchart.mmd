@@ -1,0 +1,46 @@
+
+---
+```mermaid
+flowchart TD
+
+    subgraph Inputs
+        A[Mic (Speech)]
+        B[Webcam (Sign)]
+        C[Text Input]
+        D[Webcam (Gaze)]
+    end
+
+    A --> A1[Audio Preprocessing<br/>(MFCC / Mel-Spectrogram)]
+    A1 --> A2[Speech Model<br/>(PyTorch)]
+    A2 --> P[Phrase ID]
+
+    B --> B1[Hand Keypoint Extractor<br/>(MediaPipe)]
+    B1 --> B2[Sign Model<br/>(PyTorch)]
+    B2 --> P
+
+    C --> C1[Text Parser /<br/>Optional Text Model]
+    C1 --> P
+
+    D --> D1[Face & Eye Landmarks]
+    D1 --> D2[Gaze Estimator]
+    D2 --> UI[UI Mode Control<br/>+ Confirmation]
+
+    P --> T[Translation Dictionary<br/>(EN / AR / Sign)]
+    T --> O1[Text Output<br/>(UI)]
+    T --> O2[Audio Output<br/>(TTS / wav)]
+    T --> O3[Sign Demonstration<br/>(Video / Skeleton)]
+
+    subgraph LearnMode[Learn Mode Controller]
+        L1[Lesson Selection<br/>(Phrase ID)]
+        L2[Prompt User to Speak / Sign]
+        L3[Evaluate with Speech/Sign Models]
+        L4[Feedback + Scores + Progress]
+    end
+
+    L1 --> P
+    L2 --> A & B
+    L3 --> A2 & B2
+    L4 --> UI
+
+    UI --> L2
+    UI --> L1

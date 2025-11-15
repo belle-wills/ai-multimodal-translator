@@ -1,0 +1,133 @@
+<svg width="1200" height="700" xmlns="http://www.w3.org/2000/svg">
+  <!-- Styles -->
+  <style>
+    .block {
+      fill: #f5f5ff;
+      stroke: #555;
+      stroke-width: 1.5;
+      rx: 8;
+      ry: 8;
+    }
+    .title {
+      font-family: sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      text-anchor: middle;
+    }
+    .label {
+      font-family: sans-serif;
+      font-size: 12px;
+      text-anchor: middle;
+    }
+    .arrow {
+      stroke: #444;
+      stroke-width: 1.5;
+      marker-end: url(#arrowhead);
+    }
+  </style>
+
+  <!-- Arrowhead definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <polygon points="0 0, 7 3.5, 0 7" fill="#444"></polygon>
+    </marker>
+  </defs>
+
+  <!-- Input Layer Title -->
+  <text x="600" y="30" class="title">Multimodal AI Translator &amp; Tutor – Block Diagram</text>
+
+  <!-- Input Blocks -->
+  <rect x="60" y="80" width="160" height="50" class="block"></rect>
+  <text x="140" y="110" class="label">Mic (Speech)</text>
+
+  <rect x="60" y="150" width="160" height="50" class="block"></rect>
+  <text x="140" y="180" class="label">Webcam (Sign)</text>
+
+  <rect x="60" y="220" width="160" height="50" class="block"></rect>
+  <text x="140" y="250" class="label">Text Input</text>
+
+  <rect x="60" y="290" width="160" height="50" class="block"></rect>
+  <text x="140" y="320" class="label">Webcam (Gaze)</text>
+
+  <!-- Perception Layer Blocks -->
+  <rect x="320" y="80" width="200" height="50" class="block"></rect>
+  <text x="420" y="105" class="label">Audio Preprocessing</text>
+
+  <rect x="320" y="150" width="200" height="50" class="block"></rect>
+  <text x="420" y="175" class="label">Hand Keypoint Extractor</text>
+
+  <rect x="320" y="220" width="200" height="50" class="block"></rect>
+  <text x="420" y="245" class="label">Text Parser / Classifier</text>
+
+  <rect x="320" y="290" width="200" height="50" class="block"></rect>
+  <text x="420" y="315" class="label">Face &amp; Eye Landmarks</text>
+
+  <!-- Model Blocks -->
+  <rect x="580" y="80" width="180" height="50" class="block"></rect>
+  <text x="670" y="105" class="label">Speech Model (PyTorch)</text>
+
+  <rect x="580" y="150" width="180" height="50" class="block"></rect>
+  <text x="670" y="175" class="label">Sign Model (PyTorch)</text>
+
+  <rect x="580" y="220" width="180" height="50" class="block"></rect>
+  <text x="670" y="245" class="label">Phrase ID Mapper</text>
+
+  <rect x="580" y="290" width="180" height="50" class="block"></rect>
+  <text x="670" y="315" class="label">Gaze Estimator</text>
+
+  <!-- Phrase ID and Translation -->
+  <rect x="820" y="150" width="200" height="50" class="block"></rect>
+  <text x="920" y="175" class="label">Phrase ID Layer</text>
+
+  <rect x="820" y="220" width="200" height="60" class="block"></rect>
+  <text x="920" y="245" class="label">Translation Dictionary</text>
+  <text x="920" y="262" class="label">(EN / AR / Sign)</text>
+
+  <!-- Output Layer Blocks -->
+  <rect x="820" y="320" width="200" height="50" class="block"></rect>
+  <text x="920" y="345" class="label">Text Output (UI)</text>
+
+  <rect x="820" y="390" width="200" height="50" class="block"></rect>
+  <text x="920" y="415" class="label">Audio Output</text>
+
+  <rect x="820" y="460" width="200" height="50" class="block"></rect>
+  <text x="920" y="485" class="label">Sign Demonstration</text>
+
+  <!-- Lesson / Mode Controller -->
+  <rect x="580" y="390" width="180" height="80" class="block"></rect>
+  <text x="670" y="415" class="label">Mode &amp; Lesson</text>
+  <text x="670" y="435" class="label">Controller</text>
+
+  <!-- Arrows: Inputs -> Perception -->
+  <line x1="220" y1="105" x2="320" y2="105" class="arrow"></line>
+  <line x1="220" y1="175" x2="320" y2="175" class="arrow"></line>
+  <line x1="220" y1="245" x2="320" y2="245" class="arrow"></line>
+  <line x1="220" y1="315" x2="320" y2="315" class="arrow"></line>
+
+  <!-- Perception -> Models -->
+  <line x1="520" y1="105" x2="580" y2="105" class="arrow"></line>
+  <line x1="520" y1="175" x2="580" y2="175" class="arrow"></line>
+  <line x1="520" y1="245" x2="580" y2="245" class="arrow"></line>
+  <line x1="520" y1="315" x2="580" y2="315" class="arrow"></line>
+
+  <!-- Models -> Phrase ID / Gaze -->
+  <line x1="760" y1="105" x2="820" y2="175" class="arrow"></line>
+  <line x1="760" y1="175" x2="820" y2="175" class="arrow"></line>
+  <line x1="760" y1="245" x2="820" y2="175" class="arrow"></line>
+
+  <line x1="760" y1="315" x2="760" y2="430" class="arrow"></line>
+  <line x1="760" y1="430" x2="760" y2="430" class="arrow"></line>
+
+  <!-- Phrase ID -> Translation -->
+  <line x1="920" y1="200" x2="920" y2="220" class="arrow"></line>
+
+  <!-- Translation -> Outputs -->
+  <line x1="920" y1="280" x2="920" y2="320" class="arrow"></line>
+  <line x1="920" y1="280" x2="920" y2="390" class="arrow"></line>
+  <line x1="920" y1="280" x2="920" y2="460" class="arrow"></line>
+
+  <!-- Lesson Controller connections -->
+  <line x1="760" y1="430" x2="820" y2="345" class="arrow"></line>
+  <line x1="760" y1="430" x2="820" y2="415" class="arrow"></line>
+  <line x1="760" y1="430" x2="820" y2="485" class="arrow"></line>
+</svg>
